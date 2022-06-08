@@ -1,0 +1,78 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-android-extensions'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.4.10'
+}
+
+android {
+    defaultConfig {
+        applicationId "com.example.androidbaseapp"
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+    implementation Dependencies.kotlinStandardLib
+    implementation Dependencies.kotlinCoreKtx
+
+    implementation Dependencies.lifecycleViewModel
+    implementation Dependencies.lifecycleLiveData
+    implementation Dependencies.lifecycleRuntime
+    implementation Dependencies.lifecycleViewCompose
+    implementation Dependencies.lifecycleSavedState
+    kapt Dependencies.lifecycleAnnotation
+
+    implementation Dependencies.legacySupportV4
+
+    implementation Dependencies.uiEssentialAppCompat
+    implementation Dependencies.uiEssentialConstraintLayout
+    implementation Dependencies.uiEssentialRecycleView
+    implementation Dependencies.uiMaterialSupport
+    implementation Dependencies.uiGlide
+
+    implementation Dependencies.uiNavigationFragment
+    implementation Dependencies.uiNavigationUI
+
+    implementation Dependencies.diHiltAndroid
+    implementation Dependencies.diHiltLifecycle
+    kapt Dependencies.diHiltAndroidCompiler
+    kapt Dependencies.diHiltCompiler
+
+    implementation Dependencies.networkRetrofit
+    implementation Dependencies.networkRetrofitGsonConverter
+    implementation Dependencies.gson
+    implementation Dependencies.networkRetrofitLogging
+    implementation Dependencies.jsonSerialization
+    implementation Dependencies.androidxSecurityCrypto
+
+
+    implementation Dependencies.roomDatabase
+    implementation Dependencies.roomKtxDatabase
+    implementation Dependencies.roomRxJava
+    kapt Dependencies.roomCompiler
+
+    testImplementation Dependencies.testArchCore
+    testImplementation Dependencies.testPowerMockCore
+    testImplementation Dependencies.testPowerMockJunit
+    testImplementation Dependencies.testPowerMockMockito
+    testImplementation Dependencies.testJUnit4
+
+    implementation Dependencies.paging3
+}

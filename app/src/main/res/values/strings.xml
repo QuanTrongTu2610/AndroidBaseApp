@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AndroidBaseApp</string>
+
+    <!--Bottom menu-->
+    <string name="home">Home</string>
+    <string name="details">Details</string>
+    <string name="profile">Profile</string>
+
+    <!--Screen constant text-->
+    <string name="under_construction">Under construction</string>
+</resources>

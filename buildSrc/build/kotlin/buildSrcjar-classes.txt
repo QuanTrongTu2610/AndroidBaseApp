@@ -1,0 +1,1 @@
+D:\WorkSpace\Self-learn\Android\Commons\android-base-app\AndroidBaseApp\buildSrc\build\classes\kotlin\main\AndroidConfig.class;D:\WorkSpace\Self-learn\Android\Commons\android-base-app\AndroidBaseApp\buildSrc\build\classes\kotlin\main\Dependencies.class

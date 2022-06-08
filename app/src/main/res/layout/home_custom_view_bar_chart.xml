@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerBarChartLayout"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/custom_table_chart_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvBarChartTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:text="None"
+            android:textColor="@color/cl_cs_white"
+            android:textSize="16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBarChartSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="None"
+            android:textColor="@color/cl_cs_light_gray"
+            android:textSize="12dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvBarChartTitle" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/guideline_1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <com.example.androidbaseapp.presentation.customview.barchart.TabBarCustom
+                android:id="@+id/tabOptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:customMarginBetween="10dp"
+                app:customPaddingTextLabel="10dp"
+                app:selectedTextLabelColor="@color/cl_cs_white"
+                app:textLabelSize="12dp"
+                app:underLineBackGroundColor="@color/cl_cs_dark_gray"
+                app:underLineForeGroundColor="@color/cl_cs_white"
+                app:unselectedTextLabelColor="@color/cl_cs_dark_gray" />
+        </HorizontalScrollView>
+
+
+        <TextView
+            android:id="@+id/tvBarChartDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="None"
+            android:textColor="@color/cl_cs_light_gray"
+            android:textSize="10dp"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_1"
+            app:layout_goneMarginTop="5dp" />
+
+        <TextView
+            android:id="@+id/tvBarChartSubDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="None"
+            android:textColor="@color/cl_cs_white"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toTopOf="@id/guideline_2"
+            app:layout_constraintHorizontal_bias="0.059"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvBarChartDescription" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.45" />
+
+        <com.example.androidbaseapp.presentation.customview.barchart.BarChartCustom
+            android:id="@+id/containerBarChart"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipChildren="true"
+            android:padding="5dp"
+            app:defaultColumnColor="@color/cl_cs_ternary_blue"
+            app:defaultLabelColor="@color/cl_cs_white"
+            app:defaultMarkerColor="@color/cl_cs_primary_blue"
+            app:defaultMarkerTextColor="@color/cl_cs_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guideline_2"
+            app:layout_constraintVertical_bias="1.0"
+            app:marginBetweenColumn="20dp"
+            app:selectedColumnColor="@color/cl_cs_yellow" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

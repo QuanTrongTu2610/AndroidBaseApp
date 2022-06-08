@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/WorkSpace/Self-learn/Android/AndroidByDay/2-11-21/android-base-app/app/src/main/res/layout/activity_main.xml" value="0.278125" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/drawable-v24/bottom_nav_colors.xml" value="0.18055555555555555" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/drawable-v24/ic_round_dashboard.xml" value="0.18055555555555555" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/drawable-v24/ic_round_favorite.xml" value="0.253125" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/drawable/custom_money_chart_background.xml" value="0.2465" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/drawable/custom_table_chart_background.xml" value="0.185" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/drawable/home_country_item_background.xml" value="0.131" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/drawable/home_country_item_layout.xml" value="0.185" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3229166666666667" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/layout/activity_main.xml" value="0.5379487179487179" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/layout/activity_nav_host.xml" value="0.22" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/layout/activity_splash.xml" value="0.3296875" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/layout/bottom_nav_menu.xml" value="0.5463541666666667" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/layout/fragment_album_detail.xml" value="0.2609375" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/layout/fragment_album_list.xml" value="0.15673289183222958" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/layout/fragment_base.xml" value="0.2706209453197405" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/layout/fragment_favourites.xml" value="0.2609375" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/layout/fragment_home_data_detail.xml" value="0.4083333333333333" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/layout/fragment_home_detail.xml" value="0.25" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/layout/fragment_profile.xml" value="0.2609375" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/layout/home_country_item_layout.xml" value="0.1796875" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/layout/home_custom_view_bar_chart.xml" value="0.2953125" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/layout/home_demo_view.xml" value="0.5" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/layout/home_layout_country_list_item.xml" value="0.2953125" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/layout/loading_view.xml" value="0.32037037037037036" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/menu/bottom_nav_menu.xml" value="0.5" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

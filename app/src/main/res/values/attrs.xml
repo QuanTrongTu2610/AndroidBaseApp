@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TriangleMessageCustomView">
+        <attr name="color" format="color" />
+        <attr name="labelText" format="string" />
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="BarChartCustom">
+        <attr name="defaultLabelColor" format="color" />
+        <attr name="defaultColumnColor" format="color" />
+        <attr name="defaultMarkerColor" format="color" />
+        <attr name="defaultMarkerTextColor" format="color" />
+        <attr name="marginBetweenColumn" format="dimension" />
+        <attr name="selectedColumnColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="TabBarCustom">
+        <attr name="underLineBackGroundColor" format="color" />
+        <attr name="underLineForeGroundColor" format="color" />
+        <attr name="textLabelSize" format="dimension" />
+        <attr name="selectedTextLabelColor" format="color" />
+        <attr name="unselectedTextLabelColor" format="color" />
+        <attr name="customMarginBetween" format="dimension" />
+        <attr name="customPaddingTextLabel" format="dimension" />
+    </declare-styleable>
+
+</resources>
