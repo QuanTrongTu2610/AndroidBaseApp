@@ -11,7 +11,6 @@ import com.example.androidbaseapp.data.local.dao.BasicCountryDao
 import com.example.androidbaseapp.data.local.dao.DetailCountryDao
 import com.example.androidbaseapp.data.local.dao.LoadingKeyDao
 import com.example.androidbaseapp.data.remote.CovidDynamicApiService
-import com.example.androidbaseapp.data.remote.entity.CovidDetailCountryResult
 import com.example.androidbaseapp.data.remotemediator.CovidDataMediator
 import com.example.androidbaseapp.data.remotemediator.PagerConfig.DEFAULT_PAGE_SIZE
 import com.example.androidbaseapp.domain.exceptions.DatabaseException
@@ -54,6 +53,7 @@ class CovidDataRepositoryImpl @Inject constructor(
             val apiResponse = apiServiceCovid.getWorkWip(startDate = startDate, endDate = endDate)
             return ResultWrapper.Success(apiResponse.map { it.toWorldWipModel() })
         } catch (e: Exception) {
+            Logger.d(e)
             ResultWrapper.Error(e)
         }
     }
@@ -63,6 +63,7 @@ class CovidDataRepositoryImpl @Inject constructor(
             val apiResponse = apiServiceCovid.getCountries()
             ResultWrapper.Success(apiResponse.map { it.toBasicCountryModel() })
         } catch (e: Exception) {
+            Logger.e(e)
             ResultWrapper.Error(e)
         }
     }
@@ -99,6 +100,7 @@ class CovidDataRepositoryImpl @Inject constructor(
                 .map { it.toBasicCountryModel() }
                 .let { ResultWrapper.Success(it) }
         } catch (e: Exception) {
+            Logger.e(e)
             ResultWrapper.Error(e)
         }
     }
@@ -112,6 +114,7 @@ class CovidDataRepositoryImpl @Inject constructor(
                 .map { it.toBasicCountryModel() }
                 .let { ResultWrapper.Success(it) }
         } catch (e: Exception) {
+            Logger.e(e)
             ResultWrapper.Error(e)
         }
     }
@@ -122,9 +125,7 @@ class CovidDataRepositoryImpl @Inject constructor(
     }
 
     override suspend fun insertLocalBasicCountries(data: List<BasicCountryModel>) {
-        // do not to save duplicate
         if (data.isNotEmpty()) {
-            basicCountryDao.clearBasicCountries()
             data.forEachIndexed { index, basicCountryModel ->
                 basicCountryDao.insertBasicCountry(
                     basicCountryModel.copy(id = index).toLocalBasicCountryEntity()
@@ -153,6 +154,7 @@ class CovidDataRepositoryImpl @Inject constructor(
                 ResultWrapper.Error(DatabaseException.NotFoundOrNullEntity("Loading key is null"))
             }
         } catch (e: Exception) {
+            Logger.e(e)
             ResultWrapper.Error(e)
         }
     }

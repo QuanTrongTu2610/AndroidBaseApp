@@ -102,6 +102,7 @@ class CovidDataMediator(
             }
             MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (exception: Exception) {
+            Logger.e(exception)
             MediatorResult.Error(exception)
         }
     }
@@ -173,6 +174,7 @@ class CovidDataMediator(
                         )
                         fetchSuccess = true
                     } catch (e: Exception) {
+                        Logger.e(e)
                         when (e) {
                             is NetworkConnectionException.TooManyRequestException -> {
                                 apiServiceCovid.recreateService()

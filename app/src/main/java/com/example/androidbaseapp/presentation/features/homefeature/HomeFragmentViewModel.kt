@@ -59,7 +59,6 @@ class HomeFragmentViewModel @Inject constructor(
                             dispatchState(HomeFragmentState(dataWorldWip = result.data))
                         }
                     }
-
                     is ResultWrapper.Error -> Logger.d("Unexpected result: ${result.exception.message}")
                 }
             }
@@ -77,7 +76,10 @@ class HomeFragmentViewModel @Inject constructor(
         val searches = actionStateFlow
             .filterIsInstance<UiAction.Search>()
             .distinctUntilChanged()
-            .onStart { emit(UiAction.Search(query = initialQuery)) }
+            .onStart {
+                Logger.d("emit search query: $initialQuery")
+                emit(UiAction.Search(query = initialQuery))
+            }
         // for scroll request
         val queriesScrolled = actionStateFlow
             .filterIsInstance<UiAction.Scroll>()
@@ -87,9 +89,13 @@ class HomeFragmentViewModel @Inject constructor(
                 started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000),
                 replay = 1
             )
-            .onStart { emit(UiAction.Scroll(currentQuery = lastQueryScrolled)) }
+            .onStart {
+                Logger.d("emit scroll query: $lastQueryScrolled")
+                emit(UiAction.Scroll(currentQuery = lastQueryScrolled))
+            }
 
         pagingDataFlow = searches.flatMapLatest {
+            Logger.d("execute loading: $it")
             getRemoteLiveCountriesByDayUseCase.execute(it.query).let { queryResult ->
                 when (queryResult) {
                     is ResultWrapper.Success -> queryResult.data
@@ -113,11 +119,14 @@ class HomeFragmentViewModel @Inject constructor(
         )
 
         // ui action emit value
-        accept = { action -> viewModelScope.launch { actionStateFlow.emit(action) } }
+        accept = { action -> viewModelScope.launch {
+            Logger.d("ui action emit value: $action")
+            actionStateFlow.emit(action) }
+        }
     }
 
     override fun onCleared() {
-        Logger.d("tuqt: onCleared")
+        Logger.d("onCleared")
         savedStateHandle[LAST_SEARCH_QUERY] = state?.value?.query
         savedStateHandle[LAST_QUERY_SCROLLED] = state?.value?.lastQueryScrolled
         super.onCleared()

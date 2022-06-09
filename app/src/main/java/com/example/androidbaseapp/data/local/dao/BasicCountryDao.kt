@@ -2,16 +2,17 @@ package com.example.androidbaseapp.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.androidbaseapp.data.local.entity.BasicCountryEntity
 
 @Dao
 interface BasicCountryDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBasicCountry(basicCountryEntity: BasicCountryEntity)
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateBasicCountry(basicCountryEntity: BasicCountryEntity)
 
     @Query("SELECT * FROM country")

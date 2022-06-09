@@ -3,15 +3,16 @@ package com.example.androidbaseapp.data.local.dao
 import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.androidbaseapp.data.local.entity.DetailCountryEntity
 
 @Dao
 interface DetailCountryDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDetailCountries(detailCountries: List<DetailCountryEntity>)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDetailCountry(detailCountry: DetailCountryEntity)
 
     @Query("SELECT * FROM country_detail")

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagingData
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbaseapp.R
 import com.example.androidbaseapp.domain.interactor.types.DailyWorldData
@@ -13,7 +14,6 @@ import com.example.androidbaseapp.presentation.adapter.LiveCountryByDayAdapter
 import com.example.androidbaseapp.presentation.asRemotePresentationState
 import com.example.androidbaseapp.presentation.base.BaseFragment
 import com.example.androidbaseapp.presentation.customview.ITabBarClickedHandler
-import com.example.androidbaseapp.utils.Logger
 import com.example.androidbaseapp.utils.toColumnData
 import com.example.androidbaseapp.utils.toTabLabelData
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -75,7 +75,9 @@ class HomeFragment : BaseFragment() {
         pagingData: Flow<PagingData<DetailCountryModel>>?
     ) {
         val adapter = LiveCountryByDayAdapter()
+        val layoutManager = LinearLayoutManager(this.context)
         rcvDetailCountryList.adapter = adapter
+        rcvDetailCountryList.layoutManager = layoutManager
         rcvDetailCountryList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (dy != 0 && uiActions != null) {

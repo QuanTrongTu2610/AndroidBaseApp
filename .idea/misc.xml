@@ -4,6 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/WorkSpace/Self-learn/Android/AndroidByDay/2-11-21/android-base-app/app/src/main/res/layout/activity_main.xml" value="0.278125" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/activity_nav_host.xml" value="0.19" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/activity_splash.xml" value="0.1109375" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/fragment_base.xml" value="0.17395833333333333" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/fragment_favourites.xml" value="0.17395833333333333" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/fragment_home.xml" value="0.17395833333333333" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/fragment_home_detail.xml" value="0.15729166666666666" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/fragment_profile.xml" value="0.15729166666666666" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/home_country_item_layout.xml" value="0.15729166666666666" />
         <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/drawable-v24/bottom_nav_colors.xml" value="0.18055555555555555" />
         <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/drawable-v24/ic_round_dashboard.xml" value="0.18055555555555555" />
         <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/drawable-v24/ic_round_favorite.xml" value="0.253125" />

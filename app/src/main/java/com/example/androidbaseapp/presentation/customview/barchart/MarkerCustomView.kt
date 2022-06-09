@@ -13,6 +13,7 @@ import android.view.animation.Animation
 import com.example.androidbaseapp.R
 import com.example.androidbaseapp.presentation.customview.DimensionHelper
 import com.example.androidbaseapp.presentation.customview.ViewAnimationProvider
+import com.example.androidbaseapp.utils.Logger
 import kotlin.math.min
 
 
@@ -153,7 +154,7 @@ class MarkerCustomView : View {
             textSize =
                 typedArray.getDimension(R.styleable.TriangleMessageCustomView_textSize, 0F)
         } catch (e: Exception) {
-
+            Logger.e(e)
         } finally {
             typedArray.recycle()
         }
