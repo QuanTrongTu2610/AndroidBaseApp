@@ -1,6 +1,3 @@
-/*
- * Copyright (c) 2022 All Rights Reserved, Ingenico SA.
- */
 package com.example.androidbaseapp.common
 
 import android.util.Log

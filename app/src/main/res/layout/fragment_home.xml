@@ -93,8 +93,6 @@
             android:layout_height="0dp"
             android:clipChildren="true"
             android:padding="5dp"
-            app:textMarkerSize="20sp"
-            app:textLabelSize="10sp"
             app:defaultColumnColor="@color/cs_dark_brown"
             app:defaultLabelColor="@color/cs_white"
             app:defaultMarkerColor="@color/cs_dark_gray"
@@ -106,7 +104,9 @@
             app:layout_constraintTop_toBottomOf="@+id/guideline_2"
             app:layout_constraintVertical_bias="1.0"
             app:marginBetweenColumn="24dp"
-            app:selectedColumnColor="@color/colorAccent" />
+            app:selectedColumnColor="@color/colorAccent"
+            app:textLabelSize="10sp"
+            app:textMarkerSize="20sp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
