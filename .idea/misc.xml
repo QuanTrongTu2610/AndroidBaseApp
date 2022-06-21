@@ -4,14 +4,40 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/WorkSpace/Self-learn/Android/AndroidByDay/2-11-21/android-base-app/app/src/main/res/layout/activity_main.xml" value="0.278125" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable-v24/bottom_nav_colors.xml" value="0.297" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2405" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable-v24/ic_round_dashboard.xml" value="0.2405" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable-v24/ic_round_favorite.xml" value="0.2405" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable-v24/ic_round_person.xml" value="0.2405" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable/background_article_item.xml" value="0.2835" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable/background_detail_country_item.xml" value="0.1" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable/background_flag_icon.xml" value="0.1" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable/background_newspaper_item.xml" value="0.2405" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable/background_table_chart.xml" value="0.248" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable/custom_detail_country_background_item.xml" value="0.296" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable/custom_flag_icon_background.xml" value="0.2405" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable/custom_progressbar_background.xml" value="0.1475" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable/custom_progressbar_value_background.xml" value="0.1445" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable/custom_table_chart_background.xml" value="0.297" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable/custome_flag_icon_background.xml" value="0.1455" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable/home_country_item_background.xml" value="0.3075" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable/ic_baseline_flag_24.xml" value="0.2405" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2405" />
         <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/activity_nav_host.xml" value="0.19" />
         <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/activity_splash.xml" value="0.1109375" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/custom_view_bar_chart.xml" value="0.33" />
         <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/fragment_base.xml" value="0.17395833333333333" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/fragment_detail.xml" value="0.5083333333333333" />
         <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/fragment_favourites.xml" value="0.17395833333333333" />
-        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/fragment_home.xml" value="0.17395833333333333" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/fragment_home_detail.xml" value="0.15729166666666666" />
         <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/fragment_profile.xml" value="0.15729166666666666" />
-        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/home_country_item_layout.xml" value="0.15729166666666666" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/home_country_item_layout.xml" value="0.25" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/home_custom_view_bar_chart.xml" value="0.29322916666666665" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/item_article_layout.xml" value="0.5036458333333333" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/item_country_layout.xml" value="0.3703125" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/item_newspaper_layout.xml" value="0.33" />
+        <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/AndroidBaseApp/app/src/main/res/layout/loading_view.xml" value="0.1984375" />
         <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/drawable-v24/bottom_nav_colors.xml" value="0.18055555555555555" />
         <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/drawable-v24/ic_round_dashboard.xml" value="0.18055555555555555" />
         <entry key="..\:/WorkSpace/Self-learn/Android/Commons/android-base-app/app/src/main/res/drawable-v24/ic_round_favorite.xml" value="0.253125" />

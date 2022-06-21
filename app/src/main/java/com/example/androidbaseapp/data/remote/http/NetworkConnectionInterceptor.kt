@@ -1,8 +1,8 @@
 package com.example.androidbaseapp.data.remote.http
 
 import android.content.Context
-import com.example.androidbaseapp.utils.connectivity.NetworkUtils
-import com.example.androidbaseapp.data.exceptions.NetworkConnectionException.NoConnectivityException
+import com.example.androidbaseapp.common.connectivity.NetworkUtils
+import com.example.androidbaseapp.common.exceptions.NetworkConnectionException.NoConnectivityException
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response

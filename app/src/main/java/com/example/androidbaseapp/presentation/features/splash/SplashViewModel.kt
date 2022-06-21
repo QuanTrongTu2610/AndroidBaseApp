@@ -3,11 +3,11 @@ package com.example.androidbaseapp.presentation.features.splash
 import androidx.lifecycle.LiveData
 import com.example.androidbaseapp.domain.interactor.GetRemoteBasicCountriesUseCase
 import com.example.androidbaseapp.domain.interactor.SaveLocalBasicCountriesUseCase
-import com.example.androidbaseapp.domain.model.BasicCountryModel
-import com.example.androidbaseapp.utils.Logger
-import com.example.androidbaseapp.utils.livedata.SingleLiveEvent
-import com.example.androidbaseapp.presentation.base.BaseViewModel
-import com.example.androidbaseapp.utils.ResultWrapper
+import com.example.androidbaseapp.data.repositories.model.BasicCountryModel
+import com.example.androidbaseapp.common.Logger
+import com.example.androidbaseapp.common.livedata.SingleLiveEvent
+import com.example.androidbaseapp.presentation.BaseViewModel
+import com.example.androidbaseapp.common.ResultWrapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import javax.inject.Inject

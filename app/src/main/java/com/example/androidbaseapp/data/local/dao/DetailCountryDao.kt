@@ -12,12 +12,9 @@ interface DetailCountryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDetailCountries(detailCountries: List<DetailCountryEntity>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertDetailCountry(detailCountry: DetailCountryEntity)
-
-    @Query("SELECT * FROM country_detail")
+    @Query("SELECT * FROM child_country_detail")
     fun getPagingSourceDetailCountries(): PagingSource<Int, DetailCountryEntity>
 
-    @Query("DELETE FROM country_detail")
+    @Query("DELETE FROM child_country_detail")
     suspend fun clearDetailCountries()
 }

@@ -9,12 +9,14 @@ import com.example.androidbaseapp.data.local.entity.LoadingKeyEntity.Companion.L
 data class LoadingKeyEntity(
     @PrimaryKey @ColumnInfo(name = LOADING_KEY_COLUMN_ID) val id: Int,
     @ColumnInfo(name = LOADING_KEY_COLUMN_PRE_KEY) val prevKey: Int?,
-    @ColumnInfo(name = LOADING_KEY_COLUMN_NEXT_KEY) val nextKey: Int?
+    @ColumnInfo(name = LOADING_KEY_COLUMN_NEXT_KEY) val nextKey: Int?,
+    @ColumnInfo(name = LOADING_KEY_TYPE) val keyType: Int = 0
 ) {
     companion object {
         const val LOADING_KEY_TABLE_NAME = "loading_key"
         const val LOADING_KEY_COLUMN_ID = "id"
         const val LOADING_KEY_COLUMN_PRE_KEY = "prev_key"
         const val LOADING_KEY_COLUMN_NEXT_KEY = "next_key"
+        const val LOADING_KEY_TYPE = "key_type"
     }
 }

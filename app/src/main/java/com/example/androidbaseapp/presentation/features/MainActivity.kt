@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.androidbaseapp.R
-import com.example.androidbaseapp.utils.views.viewBinding
+import com.example.androidbaseapp.common.views.viewBinding
 import com.example.androidbaseapp.databinding.ActivityNavHostBinding
-import com.example.androidbaseapp.presentation.base.BaseActivity
+import com.example.androidbaseapp.presentation.BaseActivity
 import com.example.androidbaseapp.presentation.navigation.NavigationManagerImpl
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

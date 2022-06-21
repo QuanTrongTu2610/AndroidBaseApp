@@ -13,7 +13,8 @@ import com.example.androidbaseapp.presentation.customview.ColorHelper
 import com.example.androidbaseapp.presentation.customview.DimensionHelper
 import com.example.androidbaseapp.presentation.customview.ITabBarClickedHandler
 import com.example.androidbaseapp.presentation.customview.PropertiesAnimationProvider
-import com.example.androidbaseapp.utils.Logger
+import com.example.androidbaseapp.common.Logger
+import com.example.androidbaseapp.presentation.customview.DimensionHelper.pixelsToSp
 
 @SuppressLint("CustomViewStyleable")
 class TabBarCustom : ConstraintLayout, View.OnClickListener {
@@ -82,7 +83,7 @@ class TabBarCustom : ConstraintLayout, View.OnClickListener {
                             0
                         )
                     textSize =
-                        typedArray.getDimension(R.styleable.TabBarCustom_textLabelSize, 0F)
+                        typedArray.getDimension(R.styleable.TabBarCustom_textTabSize, 0F)
                     marginBetween =
                         typedArray.getDimension(R.styleable.TabBarCustom_customMarginBetween, 0F)
                     paddingTextLabel =
@@ -194,7 +195,7 @@ class TabBarCustom : ConstraintLayout, View.OnClickListener {
                 id = View.generateViewId()
                 text = data[index].name
                 textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-                textSize = DimensionHelper.convertPixelsToDp(textSize, context)
+                textSize = pixelsToSp(this@TabBarCustom.textSize, context)
                 setTextColor(
                     ColorHelper.getColorById(
                         context,
@@ -353,14 +354,14 @@ class TabBarCustom : ConstraintLayout, View.OnClickListener {
                 PropertiesAnimationProvider.moveHorizontalAnimation(
                     foreGroundUnderLine,
                     view as TextView,
-                    700L,
+                    1000L,
                     marginBetween
                 ).start()
                 PropertiesAnimationProvider.getViewChangeWidthAnimation(
                     foreGroundUnderLine,
                     foreGroundUnderLine.width,
                     view.width,
-                    700L
+                    1000L
                 ).start()
             }
         }

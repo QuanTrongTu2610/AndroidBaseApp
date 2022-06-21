@@ -4,7 +4,7 @@ import java.text.NumberFormat
 import java.util.*
 
 object FormatHelper {
-    fun convertStringToMoneyFormat(
+    fun convertToStatisticFormat(
         number: Float,
         postFix: String = "",
         preFix: String = ""

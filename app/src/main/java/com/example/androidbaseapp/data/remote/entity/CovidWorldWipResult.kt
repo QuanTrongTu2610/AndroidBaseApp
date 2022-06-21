@@ -1,6 +1,5 @@
 package com.example.androidbaseapp.data.remote.entity
 
-
 import com.google.gson.annotations.SerializedName
 
 data class CovidWorldWipResult(

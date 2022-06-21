@@ -1,18 +1,15 @@
 package com.example.androidbaseapp.domain.repositories
 
-import androidx.paging.PagingData
-import com.example.androidbaseapp.domain.model.BasicCountryModel
-import com.example.androidbaseapp.domain.model.DetailCountryModel
-import com.example.androidbaseapp.domain.model.LoadingKeyModel
-import com.example.androidbaseapp.domain.model.WorldWipModel
-import com.example.androidbaseapp.utils.ResultWrapper
-import kotlinx.coroutines.flow.Flow
+import com.example.androidbaseapp.data.repositories.model.BasicCountryModel
+import com.example.androidbaseapp.data.repositories.model.DetailCountryModel
+import com.example.androidbaseapp.data.repositories.model.LoadingKeyModel
+import com.example.androidbaseapp.data.repositories.model.WorldWipModel
+import com.example.androidbaseapp.common.ResultWrapper
+import com.example.androidbaseapp.common.types.KeyType
 
 interface CovidDataRepository {
     /*Remote*/
     suspend fun getRemoteBasicCountries(): ResultWrapper<List<BasicCountryModel>>
-
-    suspend fun getRemoteDetailCountries(date: String): ResultWrapper<Flow<PagingData<DetailCountryModel>>>
 
     suspend fun getRemoteWorldWip(
         startDate: String,
@@ -38,9 +35,15 @@ interface CovidDataRepository {
     suspend fun countNumberOfBasicCountry(): Int
 
     /*Loading key*/
-    suspend fun getLocalLoadingKeyPage(dataId: Int): ResultWrapper<LoadingKeyModel>
+    suspend fun getLocalLoadingKeyPage(
+        dataId: Int,
+        keyType: Int = KeyType.KEY_COVID_LOADING_TYPE.value
+    ): ResultWrapper<LoadingKeyModel>
 
-    suspend fun insertLocalLoadingKey(data: LoadingKeyModel)
+    suspend fun insertLocalLoadingKey(
+        data: LoadingKeyModel,
+        keyType: Int = KeyType.KEY_COVID_LOADING_TYPE.value
+    )
 
-    suspend fun clearLocalLoadingKeys()
+    suspend fun clearLocalLoadingKeys(keyType: Int = KeyType.KEY_COVID_LOADING_TYPE.value)
 }

@@ -1,7 +1,8 @@
 package com.example.androidbaseapp.presentation.customview
 
 import android.content.Context
-import android.util.DisplayMetrics
+import android.util.TypedValue
+import com.example.androidbaseapp.common.Logger
 
 object DimensionHelper {
 
@@ -9,15 +10,26 @@ object DimensionHelper {
         dp: Float,
         context: Context
     ): Float {
-        return dp * (context.resources
-            .displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            dp,
+            context.resources.displayMetrics
+        )
     }
 
-    fun convertPixelsToDp(
-        px: Float,
+    fun convertSpToPixel(
+        sp: Float,
         context: Context
     ): Float {
-        return px / (context.resources
-            .displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_SP,
+            sp,
+            context.resources.displayMetrics
+        )
+    }
+
+    fun pixelsToSp(px: Float, context: Context): Float {
+        val scaledDensity = context.resources.displayMetrics.scaledDensity
+        return px / scaledDensity
     }
 }

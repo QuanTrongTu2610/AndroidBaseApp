@@ -1,17 +1,19 @@
 package com.example.androidbaseapp.presentation.features.homefeature
 
-import android.annotation.SuppressLint
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.androidbaseapp.domain.interactor.GetRemoteLiveCountriesByDayUseCase
+import com.example.androidbaseapp.domain.interactor.GetNewspaperUseCase
 import com.example.androidbaseapp.domain.interactor.GetRemoteTotalWorldWipUseCase
-import com.example.androidbaseapp.domain.model.DetailCountryModel
-import com.example.androidbaseapp.presentation.base.BaseViewModel
-import com.example.androidbaseapp.utils.Logger
-import com.example.androidbaseapp.utils.ResultWrapper
-import com.example.androidbaseapp.utils.TimeUtils
+import com.example.androidbaseapp.presentation.BaseViewModel
+import com.example.androidbaseapp.common.Logger
+import com.example.androidbaseapp.common.ResultWrapper
+import com.example.androidbaseapp.data.repositories.model.ArticleModel
+import com.example.androidbaseapp.data.repositories.model.DetailCountryModel
+import com.example.androidbaseapp.presentation.QueryHandler
+import com.example.androidbaseapp.presentation.UiAction
+import com.example.androidbaseapp.presentation.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -21,6 +23,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
@@ -36,17 +39,16 @@ import javax.inject.Inject
 class HomeFragmentViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val getRemoteTotalWorldWipUseCase: GetRemoteTotalWorldWipUseCase,
-    private val getRemoteLiveCountriesByDayUseCase: GetRemoteLiveCountriesByDayUseCase
+    private val getNewspaperUseCase: GetNewspaperUseCase
 ) : BaseViewModel<HomeFragmentState>() {
+    init {
+        loadWorldData()
+        loadNewspaper()
+    }
 
     var state: StateFlow<UiState>? = null
     var accept: ((UiAction) -> Unit)? = null
-    var pagingDataFlow: Flow<PagingData<DetailCountryModel>>? = null
-
-    init {
-        loadWorldData()
-        loadRemoteLiveCountriesData()
-    }
+    var pagingDataFlow: Flow<PagingData<ArticleModel>>? = null
 
     override fun initState(): HomeFragmentState = HomeFragmentState(dataWorldWip = listOf())
 
@@ -66,22 +68,21 @@ class HomeFragmentViewModel @Inject constructor(
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    @SuppressLint("CheckResult")
-    private fun loadRemoteLiveCountriesData() {
-        Logger.d("start Load remote live countries")
+    private fun loadNewspaper() {
+        Logger.d("start load article")
         val actionStateFlow = MutableSharedFlow<UiAction>()
-        val initialQuery: String = savedStateHandle.get(LAST_SEARCH_QUERY) ?: DEFAULT_QUERY
-        val lastQueryScrolled = savedStateHandle.get(LAST_QUERY_SCROLLED) ?: DEFAULT_QUERY
-        // for search request
-        val searches = actionStateFlow
+        val initialQuery: String = savedStateHandle.get(QueryHandler.ARTICLE_DATA_LAST_SEARCH_QUERY)
+            ?: QueryHandler.ARTICLE_QUERY_KEYWORD
+        val lastQueryScrolled = savedStateHandle.get(QueryHandler.ARTICLE_DATA_LAST_QUERY_SCROLLED)
+            ?: QueryHandler.ARTICLE_QUERY_KEYWORD
+        val search = actionStateFlow
             .filterIsInstance<UiAction.Search>()
             .distinctUntilChanged()
             .onStart {
                 Logger.d("emit search query: $initialQuery")
                 emit(UiAction.Search(query = initialQuery))
             }
-        // for scroll request
-        val queriesScrolled = actionStateFlow
+        val scroll = actionStateFlow
             .filterIsInstance<UiAction.Scroll>()
             .distinctUntilChanged()
             .shareIn(
@@ -94,18 +95,8 @@ class HomeFragmentViewModel @Inject constructor(
                 emit(UiAction.Scroll(currentQuery = lastQueryScrolled))
             }
 
-        pagingDataFlow = searches.flatMapLatest {
-            Logger.d("execute loading: $it")
-            getRemoteLiveCountriesByDayUseCase.execute(it.query).let { queryResult ->
-                when (queryResult) {
-                    is ResultWrapper.Success -> queryResult.data
-                    else -> flowOf()
-                }
-            }
-        }.cachedIn(viewModelScope)
-
         // action
-        state = combine(searches, queriesScrolled, ::Pair).map { (search, scroll) ->
+        state = combine(search, scroll, ::Pair).map { (search, scroll) ->
             UiState(
                 query = search.query,
                 lastQueryScrolled = scroll.currentQuery,
@@ -118,32 +109,27 @@ class HomeFragmentViewModel @Inject constructor(
             initialValue = UiState()
         )
 
+        pagingDataFlow = search.flatMapLatest {
+            Logger.d("execute loading: $it")
+            getNewspaperUseCase.execute(it.query).let { queryResult ->
+                when (queryResult) {
+                    is ResultWrapper.Success -> queryResult.data
+                    else -> flowOf()
+                }
+            }
+        }.cachedIn(viewModelScope)
+
         // ui action emit value
-        accept = { action -> viewModelScope.launch {
-            Logger.d("ui action emit value: $action")
-            actionStateFlow.emit(action) }
+        accept = { action ->
+            viewModelScope.launch {
+                Logger.d("ui action emit value: $action")
+                actionStateFlow.emit(action)
+            }
         }
     }
 
     override fun onCleared() {
         Logger.d("onCleared")
-        savedStateHandle[LAST_SEARCH_QUERY] = state?.value?.query
-        savedStateHandle[LAST_QUERY_SCROLLED] = state?.value?.lastQueryScrolled
         super.onCleared()
     }
 }
-
-data class UiState(
-    val query: String = DEFAULT_QUERY,
-    val lastQueryScrolled: String = DEFAULT_QUERY,
-    val hasNotScrolledForCurrentSearch: Boolean = false
-)
-
-sealed class UiAction {
-    data class Search(val query: String) : UiAction()
-    data class Scroll(val currentQuery: String) : UiAction()
-}
-
-private const val LAST_QUERY_SCROLLED: String = "last_query_scrolled"
-private const val LAST_SEARCH_QUERY: String = "last_search_query"
-private val DEFAULT_QUERY = TimeUtils.getSpecialCurrentTime(2)

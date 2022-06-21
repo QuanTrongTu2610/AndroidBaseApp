@@ -5,18 +5,118 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/barchartWorldWipData"
-        layout="@layout/home_custom_view_bar_chart"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerBarChartLayout"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/background_table_chart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvBarChartTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:text="None"
+            android:textColor="@color/cs_white"
+            android:textSize="16sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBarChartSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="None"
+            android:textColor="@color/cs_light_gray"
+            android:textSize="12sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvBarChartTitle" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/guideline_1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <com.example.androidbaseapp.presentation.customview.barchart.TabBarCustom
+                android:id="@+id/tabOptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:customMarginBetween="10dp"
+                app:customPaddingTextLabel="10dp"
+                app:selectedTextLabelColor="@color/cs_white"
+                app:textTabSize="12sp"
+                app:underLineBackGroundColor="@color/cs_dark_gray"
+                app:underLineForeGroundColor="@color/cs_white"
+                app:unselectedTextLabelColor="@color/cs_dark_gray" />
+        </HorizontalScrollView>
+
+
+        <TextView
+            android:id="@+id/tvBarChartDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="None"
+            android:textColor="@color/cs_white"
+            android:textSize="14sp"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_1"
+            app:layout_goneMarginTop="5dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.48" />
+
+        <com.example.androidbaseapp.presentation.customview.barchart.BarChartCustom
+            android:id="@+id/containerBarChart"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipChildren="true"
+            android:padding="5dp"
+            app:textMarkerSize="20sp"
+            app:textLabelSize="10sp"
+            app:defaultColumnColor="@color/cs_dark_brown"
+            app:defaultLabelColor="@color/cs_white"
+            app:defaultMarkerColor="@color/cs_dark_gray"
+            app:defaultMarkerTextColor="@color/cs_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guideline_2"
+            app:layout_constraintVertical_bias="1.0"
+            app:marginBetweenColumn="24dp"
+            app:selectedColumnColor="@color/colorAccent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcvDetailCountryList"
+        android:id="@+id/rcvArticles"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barchartWorldWipData" />
+        app:layout_constraintTop_toBottomOf="@id/containerBarChartLayout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_marginBottom="8dp">
+
+    <ImageView
+        android:id="@+id/imgNewspaper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="Thumbnails"
+        app:cardCornerRadius="5dp" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:alpha="0.5"
+        android:background="@color/black" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/newspaperContainer"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textColor="@color/textColor"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/tvAuthor"
+            app:layout_constraintEnd_toStartOf="@id/guideline_1"
+            app:layout_constraintStart_toStartOf="@id/newspaperContainer"
+            app:layout_constraintTop_toTopOf="@id/newspaperContainer"
+            tools:text="When Covid Came for Province town" />
+
+
+        <TextView
+            android:id="@+id/tvAuthor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:textColor="@color/textColor"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@id/guideline_1"
+            app:layout_constraintStart_toStartOf="@id/newspaperContainer"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            tools:text="Maryn McKenna" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.7" />
+
+        <TextView
+            android:id="@+id/tvDatePublic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginTop="120dp"
+            android:textAlignment="textEnd"
+            android:textColor="@color/textColor"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="@id/newspaperContainer"
+            app:layout_constraintHorizontal_bias="0.526"
+            app:layout_constraintStart_toEndOf="@id/guideline_1"
+            app:layout_constraintTop_toTopOf="@id/newspaperContainer"
+            tools:text="2022-06-14" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <TextView
+            android:id="@+id/tvPreContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:ellipsize="end"
+            android:lines="2"
+            android:textColor="@color/textColor"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/newspaperContainer"
+            app:layout_constraintEnd_toEndOf="@id/newspaperContainer"
+            app:layout_constraintStart_toStartOf="@id/newspaperContainer"
+            app:layout_constraintTop_toBottomOf="@id/guideline_2"
+            app:layout_constraintVertical_bias="1"
+            tools:text="At that point I started texting everyone I'd come in contact with over the week, he says. Realizing how many people visit Provincetown from across the country, he posted about being infected on Twitt" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

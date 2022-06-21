@@ -13,10 +13,10 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.constraintlayout.widget.Guideline
 import com.example.androidbaseapp.R
 import com.example.androidbaseapp.presentation.customview.ColorHelper
-import com.example.androidbaseapp.presentation.customview.DimensionHelper
 import com.example.androidbaseapp.presentation.customview.FormatHelper
 import com.example.androidbaseapp.presentation.customview.IColumnClickedHandler
-import com.example.androidbaseapp.utils.Logger
+import com.example.androidbaseapp.common.Logger
+import com.example.androidbaseapp.presentation.customview.DimensionHelper.pixelsToSp
 import java.lang.Exception
 
 @SuppressLint("ResourceType", "CustomViewStyleable")
@@ -24,12 +24,15 @@ class BarChartCustom : ConstraintLayout, View.OnClickListener {
 
     /*configured variables*/
     private val data = mutableListOf<ColumnModel>()
+    private val _data = data
     private var columnColor: Int = 0
     private var labelColor: Int = 0
     private var markerColor: Int = 0
     private var markerTextColor: Int = 0
     private var selectedColumnColor: Int = 0
     private var marginBetweenColumn: Float = 0F
+    private var textMarkerSize: Float = 0F
+    private var textLabelSize: Float = 0F
     private lateinit var minGuideLine: Guideline
     private lateinit var maxGuideline: Guideline
     private val listColumnViewId = mutableListOf<Int>()
@@ -109,6 +112,10 @@ class BarChartCustom : ConstraintLayout, View.OnClickListener {
                     typedArray.getResourceId(R.styleable.BarChartCustom_selectedColumnColor, 0)
                 marginBetweenColumn =
                     typedArray.getDimension(R.styleable.BarChartCustom_marginBetweenColumn, 0F)
+                textMarkerSize =
+                    typedArray.getDimension(R.styleable.BarChartCustom_textMarkerSize, 0F)
+                textLabelSize =
+                    typedArray.getDimension(R.styleable.BarChartCustom_textLabelSize, 0F)
             } catch (e: Exception) {
                 e.printStackTrace()
             } finally {
@@ -122,33 +129,8 @@ class BarChartCustom : ConstraintLayout, View.OnClickListener {
         onColumnClickCallBack = iColumnClickedHandler
     }
 
-    fun setColumnColor(color: Int) {
-        columnColor = color
-    }
-
-    fun setMarkerColor(color: Int) {
-        markerColor = color
-    }
-
-    fun setLabelColor(color: Int) {
-        labelColor = color
-    }
-
-    fun setMarkerTextColor(color: Int) {
-        markerColor = color
-    }
-
-    fun setSelectedColumnColor(color: Int) {
-        selectedColumnColor = color
-    }
-
-    fun setColumnSpaceMargin(value: Float) {
-        marginBetweenColumn = DimensionHelper.convertDpToPixel(value, context)
-    }
-
-    fun clickedDefaultColumn(columnPos: Int) {
-        defaultClickedColumnPos = columnPos
-    }
+    /*getter*/
+    fun getData(): List<ColumnModel> = _data
 
     fun setData(data: List<ColumnModel>) {
         Logger.d("setColumnData: $data")
@@ -249,7 +231,7 @@ class BarChartCustom : ConstraintLayout, View.OnClickListener {
                 id = TextView.generateViewId()
                 text = data[index].label
                 gravity = Gravity.CENTER_HORIZONTAL
-                textSize = 8f
+                textSize = pixelsToSp(textLabelSize, context)
                 setTextColor(ColorHelper.getColorById(context, labelColor))
                 layoutParams = LayoutParams(
                     LayoutParams.WRAP_CONTENT,
@@ -271,7 +253,7 @@ class BarChartCustom : ConstraintLayout, View.OnClickListener {
             marker.apply {
                 id = View.generateViewId()
                 setText("0.0")
-                setTextSize(8F)
+                setTextSize(textMarkerSize)
                 setBackGroundColor(ColorHelper.getColorById(context, markerColor))
                 setTextColor(ColorHelper.getColorById(context, markerTextColor))
                 layoutParams = LayoutParams(
@@ -475,7 +457,7 @@ class BarChartCustom : ConstraintLayout, View.OnClickListener {
             setColumnBackGroundColor(
                 ColorHelper.getColorById(
                     context,
-                    R.color.cl_cs_ternary_blue
+                    columnColor
                 )
             )
         }
@@ -511,8 +493,8 @@ class BarChartCustom : ConstraintLayout, View.OnClickListener {
     /* helper function to calculate bias*/
     private fun calculateColumnHeight(pos: Int, value: Float, mParentHeight: Int): Int {
         // find max value
-        var sum = 0F
-        data.forEach { if (sum < it.values[pos].value) sum = it.values[pos].value }
+        val sum = data.maxOf { it.values[pos].value }
+        if (data.all { it.values[pos].value == 0F }) return mParentHeight / 10
         val paddingTopPercent =
             (1 - (minGuideLine.layoutParams as LayoutParams).guidePercent)
         val paddingBottomPercent =
@@ -527,7 +509,7 @@ class BarChartCustom : ConstraintLayout, View.OnClickListener {
             setColumnBackGroundColor(
                 ColorHelper.getColorById(
                     context,
-                    R.color.cl_cs_ternary_blue
+                    columnColor
                 )
             )
         }
@@ -549,7 +531,7 @@ class BarChartCustom : ConstraintLayout, View.OnClickListener {
         currentShowedMarker = marker
         marker.apply {
             visibility = View.VISIBLE
-            setText(FormatHelper.convertStringToMoneyFormat(data[listColumnViewId.indexOf(columnView?.id)].values[currentTabPos].value))
+            setText(FormatHelper.convertToStatisticFormat(data[listColumnViewId.indexOf(columnView?.id)].values[currentTabPos].value))
             startFadeInAnimation()
         }
 

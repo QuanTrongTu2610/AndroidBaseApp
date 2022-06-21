@@ -1,35 +1,24 @@
 package com.example.androidbaseapp.data.repositories
 
-import androidx.paging.ExperimentalPagingApi
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.map
 import com.example.androidbaseapp.NetworkConfig
-import com.example.androidbaseapp.data.local.LocalDatabase
 import com.example.androidbaseapp.data.local.dao.BasicCountryDao
 import com.example.androidbaseapp.data.local.dao.DetailCountryDao
 import com.example.androidbaseapp.data.local.dao.LoadingKeyDao
 import com.example.androidbaseapp.data.remote.CovidDynamicApiService
-import com.example.androidbaseapp.data.remotemediator.CovidDataMediator
-import com.example.androidbaseapp.data.remotemediator.PagerConfig.DEFAULT_PAGE_SIZE
-import com.example.androidbaseapp.domain.exceptions.DatabaseException
-import com.example.androidbaseapp.domain.model.BasicCountryModel
-import com.example.androidbaseapp.domain.model.DetailCountryModel
-import com.example.androidbaseapp.domain.model.LoadingKeyModel
-import com.example.androidbaseapp.domain.model.WorldWipModel
+import com.example.androidbaseapp.data.repositories.model.BasicCountryModel
+import com.example.androidbaseapp.data.repositories.model.DetailCountryModel
+import com.example.androidbaseapp.data.repositories.model.LoadingKeyModel
+import com.example.androidbaseapp.data.repositories.model.WorldWipModel
+import com.example.androidbaseapp.common.exceptions.DatabaseException
 import com.example.androidbaseapp.domain.repositories.CovidDataRepository
-import com.example.androidbaseapp.utils.Logger
-import com.example.androidbaseapp.utils.ResultWrapper
-import com.example.androidbaseapp.utils.converter.toBasicCountryModel
-import com.example.androidbaseapp.utils.converter.toDetailCountryModel
-import com.example.androidbaseapp.utils.converter.toLoadingKeyEntity
-import com.example.androidbaseapp.utils.converter.toLoadingKeyModel
-import com.example.androidbaseapp.utils.converter.toLocalBasicCountryEntity
-import com.example.androidbaseapp.utils.converter.toLocalDetailCountryEntity
-import com.example.androidbaseapp.utils.converter.toWorldWipModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import com.example.androidbaseapp.common.Logger
+import com.example.androidbaseapp.common.ResultWrapper
+import com.example.androidbaseapp.common.converter.toBasicCountryModel
+import com.example.androidbaseapp.common.converter.toLoadingKeyEntity
+import com.example.androidbaseapp.common.converter.toLoadingKeyModel
+import com.example.androidbaseapp.common.converter.toLocalBasicCountryEntity
+import com.example.androidbaseapp.common.converter.toLocalDetailCountryEntity
+import com.example.androidbaseapp.common.converter.toWorldWipModel
 import java.lang.Exception
 import javax.inject.Inject
 
@@ -38,7 +27,6 @@ class CovidDataRepositoryImpl @Inject constructor(
     private val basicCountryDao: BasicCountryDao,
     private val detailCountryDao: DetailCountryDao,
     private val loadingKeyDao: LoadingKeyDao,
-    private val localDatabase: LocalDatabase,
 ) : CovidDataRepository {
 
     init {
@@ -68,31 +56,6 @@ class CovidDataRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getRemoteDetailCountries(date: String): ResultWrapper<Flow<PagingData<DetailCountryModel>>> {
-        Logger.d("date query: $date")
-        val pagerConfig = PagingConfig(
-            pageSize = basicCountryDao.countBasicCountries() / DEFAULT_PAGE_SIZE,
-            enablePlaceholders = false
-        )
-        val remoteMediator = CovidDataMediator(
-            apiServiceCovid = apiServiceCovid,
-            localDatabase = localDatabase,
-            covidDataRepository = this,
-            query = date,
-        )
-        val pagingSource = { detailCountryDao.getPagingSourceDetailCountries() }
-
-        @OptIn(ExperimentalPagingApi::class)
-        return ResultWrapper.Success(
-            Pager(
-                config = pagerConfig,
-                remoteMediator = remoteMediator,
-                pagingSourceFactory = pagingSource
-            ).flow.map { detailCountryEntity -> detailCountryEntity.map { it.toDetailCountryModel() } }
-        )
-    }
-
-    /*--local--*/
     override suspend fun getLocalBasicCountries(): ResultWrapper<List<BasicCountryModel>> {
         return try {
             basicCountryDao
@@ -146,9 +109,9 @@ class CovidDataRepositoryImpl @Inject constructor(
         return basicCountryDao.countBasicCountries()
     }
 
-    override suspend fun getLocalLoadingKeyPage(dataId: Int): ResultWrapper<LoadingKeyModel> {
+    override suspend fun getLocalLoadingKeyPage(dataId: Int, keyType: Int): ResultWrapper<LoadingKeyModel> {
         return try {
-            loadingKeyDao.getLoadingKeyById(dataId = dataId)?.let {
+            loadingKeyDao.getLoadingKeyById(dataId = dataId, keyType)?.let {
                 ResultWrapper.Success(it.toLoadingKeyModel())
             } ?: run {
                 ResultWrapper.Error(DatabaseException.NotFoundOrNullEntity("Loading key is null"))
@@ -159,11 +122,11 @@ class CovidDataRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun insertLocalLoadingKey(data: LoadingKeyModel) {
-        loadingKeyDao.insertLoadingKey(data.toLoadingKeyEntity())
+    override suspend fun insertLocalLoadingKey(data: LoadingKeyModel, keyType: Int) {
+        loadingKeyDao.insertLoadingKey(data.toLoadingKeyEntity().copy(keyType = keyType))
     }
 
-    override suspend fun clearLocalLoadingKeys() {
-        loadingKeyDao.clearLoadingKeys()
+    override suspend fun clearLocalLoadingKeys(keyType: Int) {
+        loadingKeyDao.clearLoadingKeys(keyType)
     }
 }

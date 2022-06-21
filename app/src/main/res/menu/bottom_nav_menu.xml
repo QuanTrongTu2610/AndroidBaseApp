@@ -7,7 +7,7 @@
         android:title="@string/home"
         app:showAsAction="always" />
     <item
-        android:id="@+id/featureFavouriteNavGraph"
+        android:id="@+id/featureDetailNavGraph"
         android:icon="@drawable/ic_round_favorite"
         android:title="@string/details"
         app:showAsAction="always" />

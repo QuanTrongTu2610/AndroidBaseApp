@@ -9,15 +9,12 @@ import com.example.androidbaseapp.data.local.entity.LoadingKeyEntity
 @Dao
 interface LoadingKeyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertLoadingKeys(loadingKeys: List<LoadingKeyEntity>)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertLoadingKey(loadingKey: LoadingKeyEntity)
 
-    @Query("SELECT * FROM loading_key WHERE id = :dataId")
-    suspend fun getLoadingKeyById(dataId: Int): LoadingKeyEntity?
+    @Query("SELECT * FROM loading_key WHERE id = :dataId and key_type = :keyType")
+    suspend fun getLoadingKeyById(dataId: Int, keyType: Int): LoadingKeyEntity?
 
-    @Query("DELETE FROM loading_key")
-    suspend fun clearLoadingKeys()
+    @Query("DELETE FROM loading_key WHERE key_type = :keyType")
+    suspend fun clearLoadingKeys(keyType: Int)
 
 }

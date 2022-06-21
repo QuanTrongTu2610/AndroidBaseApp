@@ -7,7 +7,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.androidbaseapp.R
 import com.example.androidbaseapp.presentation.features.MainActivity
-import com.example.androidbaseapp.utils.Logger
+import com.example.androidbaseapp.common.Logger
 import dagger.hilt.android.AndroidEntryPoint
 
 

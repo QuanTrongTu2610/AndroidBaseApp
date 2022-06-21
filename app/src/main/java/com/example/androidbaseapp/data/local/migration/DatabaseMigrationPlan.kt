@@ -5,7 +5,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.androidbaseapp.data.local.entity.BasicCountryEntity
 import com.example.androidbaseapp.data.local.entity.LoadingKeyEntity
 import com.example.androidbaseapp.data.local.entity.DetailCountryEntity
-import com.example.androidbaseapp.utils.Logger
+import com.example.androidbaseapp.common.Logger
+import com.example.androidbaseapp.data.local.entity.ArticleEntity
 
 /**
  * Migration to version 2
@@ -16,6 +17,7 @@ object Migration1to2 : Migration(1, 2) {
         database.execSQL("""DROP TABLE ${BasicCountryEntity.COUNTRY_BASIC_TABLE_NAME}""".trimIndent())
         database.execSQL("""DROP TABLE ${DetailCountryEntity.COUNTRY_DETAIL_TABLE_NAME}""".trimIndent())
         database.execSQL("""DROP TABLE ${LoadingKeyEntity.LOADING_KEY_TABLE_NAME}""".trimIndent())
+        database.execSQL("""DROP TABLE ${ArticleEntity.ARTICLE_TABLE_NAME}""".trimIndent())
     }
 }
 

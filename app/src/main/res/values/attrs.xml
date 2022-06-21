@@ -14,12 +14,14 @@
         <attr name="defaultMarkerTextColor" format="color" />
         <attr name="marginBetweenColumn" format="dimension" />
         <attr name="selectedColumnColor" format="color" />
+        <attr name="textMarkerSize" format="dimension" />
+        <attr name="textLabelSize" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="TabBarCustom">
         <attr name="underLineBackGroundColor" format="color" />
         <attr name="underLineForeGroundColor" format="color" />
-        <attr name="textLabelSize" format="dimension" />
+        <attr name="textTabSize" format="dimension" />
         <attr name="selectedTextLabelColor" format="color" />
         <attr name="unselectedTextLabelColor" format="color" />
         <attr name="customMarginBetween" format="dimension" />

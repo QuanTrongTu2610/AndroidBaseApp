@@ -8,32 +8,37 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidbaseapp.R
 import com.example.androidbaseapp.domain.interactor.types.DailyWorldData
-import com.example.androidbaseapp.domain.model.DetailCountryModel
-import com.example.androidbaseapp.presentation.RemotePresentationState
-import com.example.androidbaseapp.presentation.adapter.LiveCountryByDayAdapter
-import com.example.androidbaseapp.presentation.asRemotePresentationState
-import com.example.androidbaseapp.presentation.base.BaseFragment
+import com.example.androidbaseapp.presentation.BaseFragment
 import com.example.androidbaseapp.presentation.customview.ITabBarClickedHandler
-import com.example.androidbaseapp.utils.toColumnData
-import com.example.androidbaseapp.utils.toTabLabelData
+import com.example.androidbaseapp.common.toColumnData
+import com.example.androidbaseapp.common.toTabLabelData
+import com.example.androidbaseapp.data.repositories.model.ArticleModel
+import com.example.androidbaseapp.presentation.UiAction
+import com.example.androidbaseapp.presentation.UiState
+import com.example.androidbaseapp.presentation.adapter.ArticleAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.home_custom_view_bar_chart.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class HomeFragment : BaseFragment() {
 
     private val homeFragmentViewModel: HomeFragmentViewModel by viewModels()
 
+    private val tapOptionSelectListener = object : ITabBarClickedHandler {
+        override fun onLabelClick(tabItemPos: Int, value: String) {
+            containerBarChart.updateColumn(tabItemPos)
+        }
+    }
+
     override fun getLayoutId() = R.layout.fragment_home
 
     override fun initData(data: Bundle?) {}
 
-    override fun initViews() {}
+    override fun initViews() {
+        tvBarChartTitle.text = "Corona World Statistic"
+    }
 
     override fun initActions() {}
 
@@ -57,28 +62,25 @@ class HomeFragment : BaseFragment() {
         )
     }
 
+
     private fun bindState(
         uiState: StateFlow<UiState>?,
-        pagingData: Flow<PagingData<DetailCountryModel>>?,
+        pagingData: Flow<PagingData<ArticleModel>>?,
         uiActions: ((UiAction) -> Unit)?
     ) {
-        bindSearch()
         bindRcvList(uiState = uiState, uiActions = uiActions, pagingData = pagingData)
-    }
-
-    private fun bindSearch() {
     }
 
     private fun bindRcvList(
         uiState: StateFlow<UiState>?,
         uiActions: ((UiAction) -> Unit)?,
-        pagingData: Flow<PagingData<DetailCountryModel>>?
+        pagingData: Flow<PagingData<ArticleModel>>?
     ) {
-        val adapter = LiveCountryByDayAdapter()
+        val adapter = ArticleAdapter()
         val layoutManager = LinearLayoutManager(this.context)
-        rcvDetailCountryList.adapter = adapter
-        rcvDetailCountryList.layoutManager = layoutManager
-        rcvDetailCountryList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        rcvArticles.adapter = adapter
+        rcvArticles.layoutManager = layoutManager
+        rcvArticles.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (dy != 0 && uiActions != null) {
                     uiState?.value?.query?.let {
@@ -87,30 +89,16 @@ class HomeFragment : BaseFragment() {
                 }
             }
         })
-
-        val notLoading = adapter.loadStateFlow
-            .asRemotePresentationState()
-            .map { it == RemotePresentationState.PRESENTED }
-
-        val hasNotScrolledForCurrentSearch = uiState
-            ?.map { it.hasNotScrolledForCurrentSearch }
-            ?.distinctUntilChanged()
-
         lifecycleScope.launch {
             pagingData?.collectLatest(adapter::submitData)
         }
     }
-
 
     private fun loadDataToCustomBarChart(dayModels: List<DailyWorldData>) {
         val tabOptionData = dayModels.toTabLabelData()
         val columnData = dayModels.toColumnData()
         containerBarChart.setData(columnData)
         tabOptions.setData(tabOptionData)
-        tabOptions.setCallBack(object : ITabBarClickedHandler {
-            override fun onLabelClick(tabItemPos: Int, value: String) {
-                containerBarChart.updateColumn(tabItemPos)
-            }
-        })
+        tabOptions.setCallBack(tapOptionSelectListener)
     }
 }

@@ -75,4 +75,9 @@ dependencies {
     testImplementation Dependencies.testJUnit4
 
     implementation Dependencies.paging3
+
+    implementation Dependencies.glide
+    annotationProcessor Dependencies.glideAnnotation
+
+    implementation Dependencies.anyChart
 }

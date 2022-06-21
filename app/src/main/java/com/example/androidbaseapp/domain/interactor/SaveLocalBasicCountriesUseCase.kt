@@ -1,10 +1,10 @@
 package com.example.androidbaseapp.domain.interactor
 
 import com.example.androidbaseapp.domain.SingleUseCaseWithParameter
-import com.example.androidbaseapp.domain.model.BasicCountryModel
+import com.example.androidbaseapp.data.repositories.model.BasicCountryModel
 import com.example.androidbaseapp.domain.repositories.CovidDataRepository
-import com.example.androidbaseapp.utils.Logger
-import com.example.androidbaseapp.utils.ResultWrapper
+import com.example.androidbaseapp.common.Logger
+import com.example.androidbaseapp.common.ResultWrapper
 import java.lang.Exception
 import javax.inject.Inject
 

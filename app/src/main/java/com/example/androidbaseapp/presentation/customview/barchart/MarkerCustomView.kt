@@ -13,7 +13,8 @@ import android.view.animation.Animation
 import com.example.androidbaseapp.R
 import com.example.androidbaseapp.presentation.customview.DimensionHelper
 import com.example.androidbaseapp.presentation.customview.ViewAnimationProvider
-import com.example.androidbaseapp.utils.Logger
+import com.example.androidbaseapp.common.Logger
+import com.example.androidbaseapp.presentation.customview.DimensionHelper.pixelsToSp
 import kotlin.math.min
 
 
@@ -40,7 +41,7 @@ class MarkerCustomView : View {
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var text: String = "None"
     private var textColor: Int = 0
-    private var textSize: Float = 30f
+    private var textSize: Float = 0F
     private var textWidth: Int = 0
     private var textHeight: Int = 0
     private val textPaddingTop = DimensionHelper.convertDpToPixel(4F, context)
@@ -115,7 +116,7 @@ class MarkerCustomView : View {
 
     private fun measureTextView() {
         val mBound = Rect()
-        textPaint.textSize = textSize
+        textPaint.textSize = pixelsToSp(textSize, context)
         textPaint.getTextBounds(text, 0, text.length, mBound)
         textHeight = mBound.height()
         textWidth = mBound.width()
@@ -176,7 +177,7 @@ class MarkerCustomView : View {
     }
 
     fun setTextSize(value: Float) {
-        textSize = DimensionHelper.convertDpToPixel(value, context)
+        textSize = value
         requestLayout()
     }
 

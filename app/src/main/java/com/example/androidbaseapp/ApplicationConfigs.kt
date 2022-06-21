@@ -12,4 +12,8 @@ object NetworkConfig {
     const val API_DOMAIN_DEFAULT = "http://127.0.0.1:8000/"
 
     const val COVID_API_DOMAIN = "https://api.covid19api.com/"
+
+    const val NEWSPAPER_API_DOMAIN = "https://newsapi.org/v2/"
+
+    const val NEWSPAPER_API_TOKEN = "2dbba0dc07594c6fb03f1379d809065e"
 }

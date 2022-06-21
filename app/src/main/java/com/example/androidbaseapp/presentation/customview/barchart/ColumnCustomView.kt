@@ -36,8 +36,8 @@ class ColumnCustomView(
     private val secondQuadPoint = Point()
     private var backGroundColor: Int = 0
     private var selectedBackGroundColor: Int = 0
-    private val changeHeightDuration = 700L
-    private val changeColorDuration = 700L
+    private val changeHeightDuration = 1000L
+    private val changeColorDuration = 1000L
     private var changeHeightAnim: Animator? = null
     private var changeColorAnim: Animator? = null
     private val rectanglePaint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -55,7 +55,7 @@ class ColumnCustomView(
         rectangleRightPos = width.toFloat()
         rectangleTopPos = (0 + width / 5).toFloat()
         rectangleBottomPos = rectangleHeight.toFloat()
-        rectRadius = (rectangleWidth / 4).toFloat()
+        rectRadius = (rectangleWidth / 5).toFloat()
     }
 
     /*setter*/

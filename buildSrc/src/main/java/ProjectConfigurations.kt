@@ -80,4 +80,11 @@ object Dependencies {
 
     // database debugging
     const val databaseDebugger = "com.amitshekhar.android:debug-db:1.0.6"
+
+    // glide
+    const val glide = "com.github.bumptech.glide:glide:4.13.0"
+    const val glideAnnotation = "com.github.bumptech.glide:compiler:4.13.0"
+
+    // chart view
+    const val anyChart = "com.github.AnyChart:AnyChart-Android:1.1.2"
 }
