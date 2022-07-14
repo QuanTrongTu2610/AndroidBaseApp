@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:ellipsize="end"
-            android:lines="2"
+            android:lines="3"
             android:textColor="@color/textColor"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/newspaperContainer"
