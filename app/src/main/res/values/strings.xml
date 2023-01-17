@@ -3,7 +3,7 @@
 
     <!--Bottom menu-->
     <string name="home">Home</string>
-    <string name="details">Details</string>
+    <string name="short_video">Video</string>
     <string name="profile">Profile</string>
 
     <!--Screen constant text-->

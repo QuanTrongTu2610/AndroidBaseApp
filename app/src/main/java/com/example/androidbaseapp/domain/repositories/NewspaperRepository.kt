@@ -8,7 +8,10 @@ import com.example.androidbaseapp.data.repositories.model.ArticleModel
 import kotlinx.coroutines.flow.Flow
 
 interface NewspaperRepository {
-    suspend fun getRemoteArticles(keyWord: String): ResultWrapper<Flow<PagingData<ArticleModel>>>
+    suspend fun getRemoteArticles(
+        keyWord: String,
+        date: String
+    ): ResultWrapper<Flow<PagingData<ArticleModel>>>
 
     suspend fun insertLocalArticles(data: List<ArticleModel>)
 

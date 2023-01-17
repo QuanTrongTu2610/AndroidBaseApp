@@ -18,6 +18,7 @@ import java.lang.Exception
 
 @OptIn(ExperimentalPagingApi::class)
 class ArticleMediator(
+    private val date: String,
     private val query: String,
     private val localDatabase: LocalDatabase,
     private val newspaperRepository: NewspaperRepository,
@@ -58,7 +59,8 @@ class ArticleMediator(
             val apiResponse = newspaperDynamicApiService.getNewspaperByKeyWord(
                 keyWord = query,
                 page = page.toString(),
-                pageSize = state.config.pageSize.toString()
+                pageSize = state.config.pageSize.toString(),
+                date = date
             )
             Logger.d("apiResponse : $apiResponse")
             var apiResponseResult: List<ArticleEntity>? = null

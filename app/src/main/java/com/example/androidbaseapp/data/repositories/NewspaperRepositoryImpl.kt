@@ -38,12 +38,16 @@ class NewspaperRepositoryImpl @Inject constructor(
     }
 
     @OptIn(ExperimentalPagingApi::class)
-    override suspend fun getRemoteArticles(keyWord: String): ResultWrapper<Flow<PagingData<ArticleModel>>> {
+    override suspend fun getRemoteArticles(
+        keyWord: String,
+        date: String
+    ): ResultWrapper<Flow<PagingData<ArticleModel>>> {
         val config = PagingConfig(
             pageSize = DEFAULT_ARTICLE_PAGE_SIZE,
             enablePlaceholders = false
         )
         val articleRemoteMediator = ArticleMediator(
+            date = date,
             query = keyWord,
             localDatabase = localDatabase,
             newspaperRepository = this,

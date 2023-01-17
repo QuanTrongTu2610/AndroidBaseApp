@@ -1,4 +1,4 @@
-package com.example.androidbaseapp.presentation.features.detailfeature
+package com.example.androidbaseapp.presentation.features.shortvideofeature
 
 import androidx.lifecycle.SavedStateHandle
 import com.example.androidbaseapp.presentation.BaseViewModel
@@ -7,11 +7,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailFragmentViewModel @Inject constructor(
+class ShortVideoFragmentViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-) : BaseViewModel<DetailFragmentState>() {
+) : BaseViewModel<ShortFragmentState>() {
 
-    override fun initState(): DetailFragmentState = DetailFragmentState(state = "")
+    override fun initState(): ShortFragmentState = ShortFragmentState(state = "")
 
     override fun onCleared() {
         Logger.d("onCleared")

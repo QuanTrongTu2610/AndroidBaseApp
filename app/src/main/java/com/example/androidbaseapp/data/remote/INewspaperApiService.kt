@@ -9,6 +9,7 @@ interface INewspaperApiService {
     suspend fun getNewspaperByKeyWord(
         @Query("q") keyWord: String,
         @Query("page") page: String,
-        @Query("pageSize") pageSize: String
+        @Query("pageSize") pageSize: String,
+        @Query("from") date: String
     ): NewspaperResult
 }

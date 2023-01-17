@@ -6,7 +6,7 @@ object AndroidConfig {
     const val minSdk = 21
     const val compileSdk = 31
     const val buildTools = "30.0.2"
-    const val roomVersion = "2.3.0-beta01"
+    const val roomVersion = "2.4.0-alpha03"
     const val targetSdk = 31
 }
 

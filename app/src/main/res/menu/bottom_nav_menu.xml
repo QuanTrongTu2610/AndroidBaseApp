@@ -7,9 +7,9 @@
         android:title="@string/home"
         app:showAsAction="always" />
     <item
-        android:id="@+id/featureDetailNavGraph"
+        android:id="@+id/featureShortVideoNavGraph"
         android:icon="@drawable/ic_round_favorite"
-        android:title="@string/details"
+        android:title="@string/short_video"
         app:showAsAction="always" />
     <item
         android:id="@+id/featureProfileNavGraph"

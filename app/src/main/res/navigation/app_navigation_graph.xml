@@ -11,9 +11,9 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/featureDetailNavGraph"
-        android:name="com.example.androidbaseapp.presentation.features.detailfeature.DetailFragment"
-        tools:layout="@layout/fragment_detail" />
+        android:id="@+id/featureShortVideoNavGraph"
+        android:name="com.example.androidbaseapp.presentation.features.shortvideofeature.ShortVideoFragment"
+        tools:layout="@layout/fragment_short_video" />
 
     <fragment
         android:id="@+id/featureProfileNavGraph"

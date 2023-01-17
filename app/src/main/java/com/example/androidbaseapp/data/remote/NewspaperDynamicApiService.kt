@@ -41,9 +41,10 @@ class NewspaperDynamicApiService @Inject constructor(
     suspend fun getNewspaperByKeyWord(
         keyWord: String,
         pageSize: String,
-        page: String
+        page: String,
+        date: String
     ): NewspaperResult {
-        return newspaperApiService.getNewspaperByKeyWord(keyWord, page, pageSize)
+        return newspaperApiService.getNewspaperByKeyWord(keyWord, page, pageSize, date)
     }
 
     fun updateApiDomain(url: String) {

@@ -1,15 +1,15 @@
-package com.example.androidbaseapp.presentation.features.detailfeature
+package com.example.androidbaseapp.presentation.features.shortvideofeature
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.example.androidbaseapp.R
 import com.example.androidbaseapp.presentation.BaseFragment
 
-class DetailFragment : BaseFragment() {
+class ShortVideoFragment : BaseFragment() {
 
-    private val detailFragmentViewModel: DetailFragmentViewModel by viewModels()
+    private val detailFragmentViewModel: ShortVideoFragmentViewModel by viewModels()
 
-    override fun getLayoutId() = R.layout.fragment_detail
+    override fun getLayoutId() = R.layout.fragment_short_video
 
     override fun initData(data: Bundle?) {}
 
